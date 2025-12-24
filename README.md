@@ -1,4 +1,4 @@
-# 在线网址导航 - Web Tool
+# 在线网址导航 - LUBANDH
 
 [English Doc](./Readme-en.md)
 
@@ -15,9 +15,7 @@
 
 ## 在线预览
 
-- GitHub Pages: https://geeeeeeeek.github.io/web_tool/
-- Vercel: https://web-tool-omega.vercel.app/
-- Cloudflare Pages: https://web-a55.pages.dev/
+- Cloudflare Pages: https://lubandh.pages.dev/
 
 ## 快速开始
 
@@ -25,7 +23,7 @@
 
 1. 克隆项目到本地
 ```bash
-git clone https://github.com/geeeeeeeek/web_tool.git
+git clone https://github.com/wsluban168/LUBANDH.git
 cd web_tool
 ```
 
@@ -65,14 +63,14 @@ sudo yum install nginx
 
 ```bash
 # 创建网站目录
-sudo mkdir -p /var/www/web_tool
+sudo mkdir -p /var/www/LUBANDH
 
 # 上传文件（本地执行）
-scp -r ./* user@your-server:/var/www/web_tool/
+scp -r ./* user@your-server:/var/www/LUBANDH/
 
 # 或者在服务器上使用 git clone
 cd /var/www
-sudo git clone https://github.com/geeeeeeeek/web_tool.git
+sudo git clone https://github.com/wsluban168/LUBANDH.git
 ```
 
 #### 3. 配置 Nginx
@@ -80,7 +78,7 @@ sudo git clone https://github.com/geeeeeeeek/web_tool.git
 创建 Nginx 配置文件：
 
 ```bash
-sudo vim /etc/nginx/sites-available/web_tool
+sudo vim /etc/nginx/sites-available/LUBANDH
 ```
 
 添加以下配置：
@@ -90,7 +88,7 @@ server {
     listen 80;
     server_name your-domain.com;  # 修改为你的域名或服务器 IP
 
-    root /var/www/web_tool;
+    root /var/www/LUBANDH;
     index index.html;
 
     # 启用 gzip 压缩
@@ -119,7 +117,7 @@ server {
 
 ```bash
 # 创建软链接启用站点
-sudo ln -s /etc/nginx/sites-available/web_tool /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/LUBANDH/etc/nginx/sites-enabled/
 
 # 测试配置文件
 sudo nginx -t
@@ -158,7 +156,7 @@ Vercel 提供免费的静态网站托管服务，部署简单快速。
 
 3. 导入你的 GitHub 仓库
    - 选择 "Import Git Repository"
-   - 授权 GitHub 并选择 `web_tool` 仓库
+   - 授权 GitHub 并选择 `LUBANDH` 仓库
 
 4. 配置项目
    - Framework Preset: 选择 "Other"
@@ -187,7 +185,7 @@ vercel login
 3. 在项目目录下执行部署
 
 ```bash
-cd web_tool
+cd LUBANDH
 vercel
 ```
 
@@ -195,7 +193,7 @@ vercel
    - Set up and deploy? Y
    - Which scope? 选择你的账户
    - Link to existing project? N
-   - Project name? web_tool (或自定义名称)
+   - Project name? LUBANDH (或自定义名称)
    - In which directory is your code located? ./
 
 5. 生产环境部署
@@ -364,10 +362,8 @@ MIT License
 
 ## 联系方式
 
-- GitHub: https://github.com/geeeeeeeek
-- 个人主页: https://web.gitapp.cn
-- Email: kefu308@gmail.com
+- GitHub:https://github.com/wsluban168/LUBANDH
 
 ---
 
-⭐ 如果这个项目对你有帮助，欢迎 Star 支持！
+
