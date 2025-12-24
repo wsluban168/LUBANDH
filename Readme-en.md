@@ -16,7 +16,7 @@ A web navigation tool based on HTML + CSS + JavaScript, with a clean and beautif
 ## Live Demo
 
 - GitHub Pages:https://github.com/wsluban168/LUBANDH
-- Cloudflare Pages:https://lubandh.pages.dev/
+- Cloudflare Pages:
 ## Quick Start
 
 ### Local Preview
