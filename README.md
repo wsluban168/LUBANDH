@@ -295,8 +295,7 @@ $.ajax({
 
 ## 项目结构
 
-```
-web_tool/
+```lubandh/
 ├── index.html              # 首页
 ├── commit.html             # 网址提交页面
 ├── 404.html               # 404 错误页面
