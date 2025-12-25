@@ -24,7 +24,7 @@
 1. 克隆项目到本地
 ```bash
 git clone https://github.com/wsluban168/LUBANDH.git
-cd web_tool
+cd lubandh
 ```
 
 2. 使用任意 HTTP 服务器运行
@@ -361,8 +361,7 @@ MIT License
 
 ## 联系方式
 
-- GitHub:https://github.com/wsluban168/LUBANDH
-
+- 留空
 ---
 
 
