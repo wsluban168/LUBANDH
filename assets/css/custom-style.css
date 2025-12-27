@@ -104,10 +104,16 @@ footer.main-footer .footer-text a:hover {
 
 /*网格背景*/
 .io-grey-mode .page-container .grid-bg {
-    background-image: linear-gradient(135deg, #050810 0%, #0a0f19 50%, #101828 100%);
-    /* 移除原有网格背景 */
+    /* 替换为你复制的GitHub原始图片链接 */
+    background-image: url("https://raw.githubusercontent.com/wsluban168/LUBANDH/master/assets/images/星空.png");
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* 图片加载失败的备用色 */
+    background-color: #0a0f19;
 }
+
 
 
 
