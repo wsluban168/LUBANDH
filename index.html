@@ -6090,228 +6090,97 @@ var theme = {"ajaxurl":"","addico":"https:\/\/nav.baidu.cn\/wp-content\/themes\/
 
 <script>
 
+(function(){
 
-    <title>自动+手动日夜模式切换</title>
+    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js";></script>
+        if(new Date().getHours() > 22 || new Date().getHours() < 6){
 
-    <style>
+            document.body.classList.remove('io-black-mode');
 
-        /* 统一模式样式，确保自动初始化和手动切换联动 */
+            document.body.classList.add('io-grey-mode');
 
-        .io-grey-mode {
+            document.cookie = "night=1;path=/";
 
-            background-color: #f5f5f5;
+            console.log('夜间模式开启');
 
-            color: #333;
+        }else{
 
-        }
+            document.body.classList.remove('night');
 
-        .io-black-mode {
+            document.cookie = "night=0;path=/";
 
-            background-color: #000;
-
-            color: #fff;
-
-        }
-
-        .icon-night {
-
-            content: "🌙";
+            console.log('夜间模式关闭');
 
         }
 
-        .icon-light {
+    }else{
 
-            content: "☀️";
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
 
-        }
+        if(night == '0'){
 
-        #search-bg {
+            document.body.classList.remove('night');
 
-            width: 100vw;
+        }else if(night == '1'){
 
-            height: 100vh;
-
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-    <button class="switch-dark-mode" data-original-title="夜间模式">
-
-        <span class="mode-ico icon-night"></span>
-
-    </button>
-
-    <div id="search-bg"></div>
-
- 
-
-    <script>
-
-        // 1. 提取常量：避免硬编码重复，便于后续修改
-
-        const BG_IMAGE_PATH = "url(assets/images/bg-dna.jpg)"; // 移除多余转义符
-
-        const NIGHT_COOKIE_NAME = "night";
-
-        const NIGHT_MODE_CLASS = "io-black-mode"; // 夜间模式类名（统一）
-
-        const DAY_MODE_CLASS = "io-grey-mode";    // 日间模式类名（统一）
-
- 
-
-        // 2. 封装Cookie读写方法（可复用、可读性强，替代复杂正则）
-
-        function getCookie(name) {
-
-            const cookieList = document.cookie.split('; ');
-
-            for (const cookie of cookieList) {
-
-                const [cookieKey, cookieValue] = cookie.split('=');
-
-                if (cookieKey === name) {
-
-                    return cookieValue;
-
-                }
-
-            }
-
-            return null;
+            document.body.classList.add('night');
 
         }
 
- 
+    }
 
-        function setCookie(name, value, path = "/") {
-
-            document.cookie = `${name}=${value};path=${path}`;
-
-        }
+})();
 
  
 
-        // 3. 封装统一的模式切换核心逻辑（复用自动初始化和手动切换的公共逻辑）
+$("#search-bg").css("background-image", "url(assets\/images\/bg-dna.jpg)");
 
-        function setNightMode(status) {
+function switchNightMode(){
 
-            const $modeIco = $(".mode-ico");
+    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
 
-            const $switchBtn = $(".switch-dark-mode");
+    if(night == '0'){
 
- 
+       $("#search-bg").css("background-image", "url(assets\/images\/bg-dna.jpg)");
 
-            // 移除所有模式类，避免类名冲突
+        document.body.classList.remove('io-grey-mode');
 
-            document.body.classList.remove(DAY_MODE_CLASS, NIGHT_MODE_CLASS);
+        document.body.classList.add('io-black-mode');
 
- 
+        document.cookie = "night=1;path=/"
 
-            if (status === '1') {
+        console.log(' ');
 
-                // 夜间模式
+        $(".switch-dark-mode").attr("data-original-title","日间模式");
 
-                document.body.classList.add(NIGHT_MODE_CLASS);
+        $(".mode-ico").removeClass("icon-night");
 
-                $switchBtn.attr("data-original-title", "日间模式");
+        $(".mode-ico").addClass("icon-light");
 
-                $modeIco.removeClass("icon-night").addClass("icon-light");
+    }else{
 
-                setCookie(NIGHT_COOKIE_NAME, '1');
+       $("#search-bg").css("background-image", "url(assets\/images\/bg-dna.jpg)")
 
-                console.log('夜间模式已开启');
+        document.body.classList.remove('io-black-mode');
 
-            } else {
+        document.body.classList.add('io-grey-mode');
 
-                // 日间模式
+        document.cookie = "night=0;path=/"
 
-                document.body.classList.add(DAY_MODE_CLASS);
+        console.log(' ');
 
-                $switchBtn.attr("data-original-title", "夜间模式");
+        $(".switch-dark-mode").attr("data-original-title","夜间模式");
 
-                $modeIco.removeClass("icon-light").addClass("icon-night");
+        $(".mode-ico").removeClass("icon-light");
 
-                setCookie(NIGHT_COOKIE_NAME, '0');
+        $(".mode-ico").addClass("icon-night");
 
-                console.log('夜间模式已关闭');
+    }
 
-            }
+}
 
-        }
-
- 
-
-        // 4. 封装自动初始化日夜模式（整合时间判断+Cookie恢复）
-
-        function initNightMode() {
-
-            // 初始化背景图片（仅执行1次，避免冗余）
-
-            $("#search-bg").css("background-image", BG_IMAGE_PATH);
-
- 
-
-            const nightStatus = getCookie(NIGHT_COOKIE_NAME);
-
- 
-
-            if (!nightStatus) {
-
-                // 无Cookie时，根据时间自动判断（22点-6点为夜间）
-
-                const currentHour = new Date().getHours();
-
-                const isNightTime = currentHour > 22 || currentHour < 6;
-
-                setNightMode(isNightTime ? '1' : '0');
-
-            } else {
-
-                // 有Cookie时，恢复保存的模式
-
-                setNightMode(nightStatus);
-
-            }
-
-        }
-
- 
-
-        // 5. 优化后的手动切换方法（复用核心逻辑，简化代码）
-
-        function switchNightMode() {
-
-            const currentStatus = getCookie(NIGHT_COOKIE_NAME) || '0';
-
-            // 切换状态：1 <-> 0
-
-            const targetStatus = currentStatus === '0' ? '1' : '0';
-
-            setNightMode(targetStatus);
-
-        }
-
- 
-
-        // 6. 确保DOM加载完成后执行所有逻辑，避免查询失败
-
-        $(function() {
-
-            initNightMode();
-
-            // 绑定切换按钮点击事件
-
-            $(".switch-dark-mode").on('click', switchNightMode);
-
-        });
-
-    </script>
+</script>
 
 </body>
 
@@ -6321,14 +6190,7 @@ var theme = {"ajaxurl":"","addico":"https:\/\/nav.baidu.cn\/wp-content\/themes\/
 
  
 
-发件人: ང་ནི་ཁྱོད་ཀྱི་ཨ <1353116457@qq.com>
-发送时间: 2025年12月29日 15:27
-收件人: Whbz Cai 蔡本志 <Whbz.Cai@tpv-tech.com>
-主题: custom-style
 
- 
-
-[External Email]:
 
 
  
