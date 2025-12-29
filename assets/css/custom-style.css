@@ -110,8 +110,7 @@ footer.main-footer .footer-text a:hover {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    /* 图片加载失败的备用色 */
-    background-color: #0a0f19;
+    
 }
 
 
